@@ -5,6 +5,9 @@ const accessToken = localStorage.getItem("accessToken");
 const username = localStorage.getItem("username");
 const createPostForm = document.getElementById("createPostForm");
 const createPostMessage = document.getElementById("createPostMessage");
+const searchInput = document.getElementById("searchInput")
+
+let allPosts = [];
 
 async function fetchPosts() {
     try {
@@ -23,7 +26,9 @@ async function fetchPosts() {
             );
         }
 
-    displayPosts(data.data);
+        allPosts = data.data;
+        displayPosts(data.data);
+
     } catch (error) {
         console.error(error);
     }
@@ -79,6 +84,24 @@ async function fetchPosts() {
             postsContainer.appendChild(article);
         });
     }
+
+    searchInput.addEventListener("input", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        const filteredPosts = allPosts.filter((post) => {
+            return (
+                post.title?.toLowerCase().includes(searchTerm) ||
+                post.body?.toLowerCase().includes(searchTerm)
+            );
+        });
+
+        if (filteredPosts.length === 0) {
+            postsContainer.textContent = "No posts found.";
+            return;
+        }
+
+        displayPosts(filteredPosts);
+    })
 
 
 async function createPost(title, body) {
