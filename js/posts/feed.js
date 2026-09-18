@@ -44,8 +44,12 @@ async function fetchPosts() {
             body.textContent = post.body || "";
 
             const author = document.createElement("p");
-            author.textContent = 
-            `Author: ${post.author.name || "Unknown author"}`;
+
+            const authorLink = document.createElement("a");
+            authorLink.href = `profile.html?name=${encodeURIComponent(post.author.name)}`;
+            authorLink.textContent = post.author.name || "Unknown author";
+
+            author.appendChild(authorLink);
 
             const link = document.createElement("a");
             link.href = `post.html?id=${post.id}`;
@@ -67,7 +71,7 @@ async function fetchPosts() {
                         article.remove();
                     }
                 });
-                
+
                 article.appendChild(editLink);
                 article.appendChild(deleteButton);
             }
