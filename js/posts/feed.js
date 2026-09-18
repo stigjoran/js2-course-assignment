@@ -51,14 +51,27 @@ async function fetchPosts() {
             link.href = `post.html?id=${post.id}`;
             link.textContent = "View post";
 
+            article.append(title, body, author, link);
+
             if (isOwnPost) {
                 const editLink = document.createElement("a");
                 editLink.href = `edit.html?id=${post.id}`;
                 editLink.textContent = "Edit";
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+
+                deleteButton.addEventListener("click", async () => {
+                    const deleted = await deletePost(post.id);
+                    if (deleted) {
+                        article.remove();
+                    }
+                });
+                
                 article.appendChild(editLink);
+                article.appendChild(deleteButton);
             }
 
-            article.append(title, body, link);
             postsContainer.appendChild(article);
         });
     }
@@ -86,6 +99,27 @@ async function createPost(title, body) {
         await fetchPosts();
     } catch (error) {
         console.error(error);
+    }
+}
+
+async function deletePost(postId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": API_KEY,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Could not delete post");
+        }
+
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
     }
 }
 
