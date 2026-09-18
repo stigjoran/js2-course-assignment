@@ -6,6 +6,9 @@ const username = localStorage.getItem("username");
 const createPostForm = document.getElementById("createPostForm");
 const createPostMessage = document.getElementById("createPostMessage");
 const searchInput = document.getElementById("searchInput")
+const myProfileLink = document.getElementById("myProfileLink");
+
+myProfileLink.href = `profile.html?name=${encodeURIComponent(username)}`;
 
 let allPosts = [];
 

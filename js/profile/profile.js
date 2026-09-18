@@ -10,6 +10,9 @@ const profileName = document.getElementById("profileName");
 const profileInfo = document.getElementById("profileInfo");
 const profilePosts = document.getElementById("profilePosts");
 const followButton = document.getElementById("followButton");
+const myProfileLink = document.getElementById("myProfileLink");
+
+myProfileLink.href = `profile.html?name=${encodeURIComponent(loggedInUsername)}`;
 
 if (username === loggedInUsername) {
     followButton.hidden = true;
