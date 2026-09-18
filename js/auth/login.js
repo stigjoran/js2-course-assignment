@@ -37,6 +37,8 @@ loginForm.addEventListener("submit", async (event) => {
         localStorage.setItem("username", data.data.name);
         message.textContent = "Login successful!";
 
+        window.location.href = "feed.html";
+
 
     } catch (error) {
         message.textContent = error.message;

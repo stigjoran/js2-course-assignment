@@ -1,5 +1,8 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
 import { getAuthHeaders } from "../api.js";
+import { requireAuth } from "../auth/logout.js";
+
+requireAuth();
 
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");

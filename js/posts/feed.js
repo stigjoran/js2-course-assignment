@@ -1,13 +1,21 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
 import { getAuthHeaders } from "../api.js";
+import { logout, requireAuth } from "../auth/logout.js";
+
+requireAuth();
 
 const postsContainer = document.getElementById("postsContainer");
-const accessToken = localStorage.getItem("accessToken");
 const username = localStorage.getItem("username");
+
+
+
 const createPostForm = document.getElementById("createPostForm");
 const createPostMessage = document.getElementById("createPostMessage");
 const searchInput = document.getElementById("searchInput")
 const myProfileLink = document.getElementById("myProfileLink");
+const logoutButton = document.getElementById("logoutButton");
+
+logoutButton.addEventListener("click", logout);
 
 myProfileLink.href = `profile.html?name=${encodeURIComponent(username)}`;
 
