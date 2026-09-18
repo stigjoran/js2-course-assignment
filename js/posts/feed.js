@@ -2,6 +2,7 @@ import { API_BASE_URL, API_KEY } from "../config.js";
 
 const postsContainer = document.getElementById("postsContainer");
 const accessToken = localStorage.getItem("accessToken");
+const username = localStorage.getItem("username");
 const createPostForm = document.getElementById("createPostForm");
 const createPostMessage = document.getElementById("createPostMessage");
 
@@ -34,6 +35,8 @@ async function fetchPosts() {
         posts.forEach((post) => {
             const article = document.createElement("article");
 
+            const isOwnPost = post.author.name === username;
+
             const title = document.createElement("h3");
             title.textContent = post.title || "Untitled post";
 
@@ -47,6 +50,13 @@ async function fetchPosts() {
             const link = document.createElement("a");
             link.href = `post.html?id=${post.id}`;
             link.textContent = "View post";
+
+            if (isOwnPost) {
+                const editLink = document.createElement("a");
+                editLink.href = `edit.html?id=${post.id}`;
+                editLink.textContent = "Edit";
+                article.appendChild(editLink);
+            }
 
             article.append(title, body, link);
             postsContainer.appendChild(article);
