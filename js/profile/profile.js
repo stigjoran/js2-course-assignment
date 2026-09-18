@@ -1,4 +1,5 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
+import { getAuthHeaders } from "../api.js";
 
 const accessToken = localStorage.getItem("accessToken");
 const loggedInUsername = localStorage.getItem("username");
@@ -38,19 +39,16 @@ async function fetchFollowState() {
         const response = await fetch(
             `${API_BASE_URL}/social/profiles/${loggedInUsername}?_following=true`,
             {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY
+                headers: getAuthHeaders(),
             },
-        }
-    );
+        );
 
-    const data = await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
             throw new Error(data.errors?.[0]?.message || "Could not fetch follow state");
         }
-    
+
         const isFollowing = data.data.following.some(
             (profile) => profile.name === username
         );
@@ -69,10 +67,7 @@ async function followUser() {
     try {
         const response = await fetch(`${API_BASE_URL}/social/profiles/${username}/follow`, {
             method: "PUT",
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY
-            },
+            headers: getAuthHeaders(),
         });
 
         const data = await response.json();
@@ -92,10 +87,7 @@ async function unfollowUser() {
     try {
         const response = await fetch(`${API_BASE_URL}/social/profiles/${username}/unfollow`, {
             method: "PUT",
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY
-            },
+            headers: getAuthHeaders(),
         });
 
         const data = await response.json();
@@ -125,10 +117,7 @@ async function fetchUserProfile() {
         const response = await fetch(
             `${API_BASE_URL}/social/profiles/${username}`, 
             {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY
-            },
+            headers: getAuthHeaders()
         });
 
         const data = await response.json();
@@ -169,10 +158,7 @@ async function fetchUserPosts() {
         const response = await fetch(
             `${API_BASE_URL}/social/profiles/${username}/posts`,
             {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    "X-Noroff-API-Key": API_KEY
-                },
+                headers: getAuthHeaders(),
             }
         );
 

@@ -1,4 +1,5 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
+import { getAuthHeaders } from "../api.js";
 
 const postContainer = document.getElementById("postContainer");
 const accessToken = localStorage.getItem("accessToken");
@@ -11,10 +12,7 @@ async function fetchPost() {
         const response = await fetch(
 `${API_BASE_URL}/social/posts/${postId}?_author=true`,
 {
-    headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "X-Noroff-API-Key": API_KEY
-    },
+    headers: getAuthHeaders(),
   }
 );
 

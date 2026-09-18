@@ -1,4 +1,5 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
+import { getAuthHeaders } from "../api.js";
 
 const postsContainer = document.getElementById("postsContainer");
 const accessToken = localStorage.getItem("accessToken");
@@ -15,10 +16,7 @@ let allPosts = [];
 async function fetchPosts() {
     try {
         const response = await fetch(`${API_BASE_URL}/social/posts?_author=true`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY
-            },
+           headers: getAuthHeaders(),
         });
 
         const data = await response.json();
@@ -111,9 +109,8 @@ async function createPost(title, body) {
     try {
         const response = await fetch(`${API_BASE_URL}/social/posts`, {
             method: "POST",
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY,
+                headers: {
+                ...getAuthHeaders(),
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ title, body }),
@@ -136,10 +133,7 @@ async function deletePost(postId) {
     try {
         const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
             method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY,
-            },
+            headers: getAuthHeaders(),
         });
 
         if (!response.ok) {

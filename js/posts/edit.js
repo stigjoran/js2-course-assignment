@@ -1,4 +1,5 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
+import { getAuthHeaders } from "../api.js";
 
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");
@@ -13,10 +14,7 @@ async function fetchPost() {
 
     try {
         const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY
-            },
+            headers: getAuthHeaders(),
         });
 
         const data = await response.json();
@@ -38,9 +36,8 @@ async function updatePost(title, body) {
         const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
             method: "PUT",
             headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": API_KEY,
-                "Content-Type": "application/json"
+                ...getAuthHeaders(),
+                "content-Type": "application/json",
             },
             body: JSON.stringify({ title, body })
         });
