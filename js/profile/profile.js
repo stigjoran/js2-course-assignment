@@ -1,6 +1,7 @@
 import { API_BASE_URL, API_KEY } from "../config.js";
 
 const accessToken = localStorage.getItem("accessToken");
+const loggedInUsername = localStorage.getItem("username");
 
 const params = new URLSearchParams(window.location.search);
 const username = params.get("name");
@@ -8,6 +9,11 @@ const username = params.get("name");
 const profileName = document.getElementById("profileName");
 const profileInfo = document.getElementById("profileInfo");
 const profilePosts = document.getElementById("profilePosts");
+const followButton = document.getElementById("followButton");
+
+if (username === loggedInUsername) {
+    followButton.hidden = true;
+}
 
 function displayProfile(profileData) {
     profileName.textContent = profileData.name;
@@ -23,6 +29,93 @@ function displayProfile(profileData) {
 
     profileInfo.append(bio, followers, following);
 }
+
+async function fetchFollowState() {
+    try {
+        const response = await fetch(
+            `${API_BASE_URL}/social/profiles/${loggedInUsername}?_following=true`,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": API_KEY
+            },
+        }
+    );
+
+    const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.errors?.[0]?.message || "Could not fetch follow state");
+        }
+    
+        const isFollowing = data.data.following.some(
+            (profile) => profile.name === username
+        );
+
+        followButton.textContent = isFollowing ? "Unfollow" : "Follow";
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+
+async function followUser() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/social/profiles/${username}/follow`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": API_KEY
+            },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.errors?.[0]?.message || "Could not follow user");
+        }
+
+        followButton.textContent = "Unfollow";
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function unfollowUser() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/social/profiles/${username}/unfollow`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": API_KEY
+            },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.errors?.[0]?.message || "Could not unfollow user");
+        }
+
+        followButton.textContent = "Follow";
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+followButton.addEventListener("click", async () => {
+    if (followButton.textContent === "Follow") {
+        await followUser();
+    } else {
+        await unfollowUser();
+        }
+    });
+
 
 async function fetchUserProfile() {
     try {
@@ -41,6 +134,8 @@ async function fetchUserProfile() {
             throw new Error(data.errors?.[0]?.message || "Could not fetch profile"
             );
         }
+
+        console.log("Profile:", data.data);
 
         displayProfile(data.data);
     } catch (error) {
@@ -93,3 +188,4 @@ async function fetchUserPosts() {
 
 fetchUserProfile();
 fetchUserPosts();
+fetchFollowState();
