@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_KEY } from "../config.js";
+import { API_BASE_URL } from "../config.js";
 import { getAuthHeaders } from "../api.js";
 import { logout, requireAuth } from "../auth/logout.js";
 
@@ -42,6 +42,11 @@ async function fetchPosts() {
         console.error(error);
     }
 }
+
+/** 
+ * Displays a list of posts in the feed.
+ * @param {Array} posts- the posts to display.
+ */
 
     function displayPosts(posts) {
         postsContainer.textContent = "";
@@ -117,6 +122,11 @@ async function fetchPosts() {
         displayPosts(filteredPosts);
     })
 
+/**
+ * Creates a new post.
+ * @param {string} title - The title of the post.
+ * @param {string} body - The body of the post.
+ */
 
 async function createPost(title, body) {
     try {
@@ -141,6 +151,12 @@ async function createPost(title, body) {
         console.error(error);
     }
 }
+
+/**
+ * Deletes a post by its ID.
+ * @param {number|string} postId - The ID of the post to delete.
+ * @returns {Promise<boolean>} True if the post was deleted, otherwise false.
+ */
 
 async function deletePost(postId) {
     try {
