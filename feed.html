@@ -15,15 +15,15 @@
         <nav>
             <a href="./feed.html">Feed</a>
             <a href="./profile.html" id="myProfileLink">My profile</a>
-            <button id="logoutButton">Logout</button>
+            <button id="logoutButton" class="logout-button">Logout</button>
         </nav>
     </header>
 
     <main>
-        <section>
+        <section class="create-post">
             <h2>Create Post</h2>
 
-            <form id="createPostForm">
+            <form id="createPostForm" class="create-post-form">
                 <div>
                     <label for="postTitle">Title</label>
                     <input
@@ -33,16 +33,6 @@
                         required
                     >
                 </div>
-
-                <section>
-                    <h2>Search posts</h2>
-                    <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Search posts"
-                    >
-                </section>
-
             
                 <div>
                     <label for="postBody">Body</label>
@@ -58,9 +48,18 @@
             <p id="createPostMessage"></p>
         </section>
 
-        <section>
+        <section class="search-section">
+                    <h2>Search posts</h2>
+                    <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search posts"
+                >
+        </section>
+
+        <section class="posts-section">
             <h2>Posts</h2>
-            <div id="postsContainer"></div>
+            <div id="postsContainer" class="posts-container"></div>
         </section>
     </main>
 </body>

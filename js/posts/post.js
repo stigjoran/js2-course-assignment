@@ -5,7 +5,6 @@ import { requireAuth } from "../auth/logout.js";
 requireAuth();
 
 const postContainer = document.getElementById("postContainer");
-const accessToken = localStorage.getItem("accessToken");
 
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");

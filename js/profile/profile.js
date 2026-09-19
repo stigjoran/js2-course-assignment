@@ -4,11 +4,10 @@ import { requireAuth } from "../auth/logout.js";
 
 requireAuth();
 
-const accessToken = localStorage.getItem("accessToken");
 const loggedInUsername = localStorage.getItem("username");
 
 const params = new URLSearchParams(window.location.search);
-const username = params.get("name");
+const username = params.get("name")  || loggedInUsername;
 
 const profileName = document.getElementById("profileName");
 const profileInfo = document.getElementById("profileInfo");

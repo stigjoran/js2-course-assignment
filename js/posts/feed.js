@@ -69,7 +69,12 @@ async function fetchPosts() {
             link.href = `post.html?id=${post.id}`;
             link.textContent = "View post";
 
-            article.append(title, body, author, link);
+            article.append(title, body, author);
+
+            const actions = document.createElement("div");
+            actions.classList.add("post-actions");
+
+            actions.appendChild(link);
 
             if (isOwnPost) {
                 const editLink = document.createElement("a");
@@ -86,9 +91,9 @@ async function fetchPosts() {
                     }
                 });
 
-                article.appendChild(editLink);
-                article.appendChild(deleteButton);
+                actions.append(editLink, deleteButton);
             }
+            article.appendChild(actions);
 
             postsContainer.appendChild(article);
         });

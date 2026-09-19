@@ -1,0 +1,341 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-background: #f3f4f6;
+    --color-white: #ffffff;
+    --color-grey: #6B7280;
+    --color-dark: #111827;
+    --color-primary: #2563EB;
+    --color-primary-hover: #1D4ED8;
+    --color-border: #E5E7EB;
+    --color-error: #ef4444;
+
+    --font-size-h1: 32px;
+    --font-size-h2: 24px;
+    --font-size-body: 16px;
+    --font-size-small: 14px;
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    --shadow-sm: 0 2px 8px rgba(17, 24, 39, 0.08);
+}
+
+/* base */
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-dark);
+    font-size: var(--font-size-body);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+main {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* header */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+header h1 {
+    margin: 0;
+    font-size: var(--font-size-h2);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+nav a {
+    color: var(--color-dark);
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* forms */
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    color: var(--color-dark);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+}
+
+button {
+    padding: 12px var(--space-md);
+    font: inherit;
+    font-weight: 600;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* create post */
+
+.create-post {
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.create-post h2 {
+    margin-top: 0;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.create-post-form div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+/* search */
+
+.search-section {
+    margin-top: var(--space-lg);
+}
+
+/* posts */
+
+.posts-section {
+    margin-top: var(--space-lg);
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.posts-container article {
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.posts-container article h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+}
+
+.posts-container article p {
+    margin: var(--space-sm) 0;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.post-actions a {
+    font-size: var(--font-size-small);
+    font-weight: 500;
+}
+
+.post-actions button {
+    color: var(--color-error);
+    background-color: transparent;
+    border: 1px solid var(--color-error);
+}
+
+.post-actions button:hover {
+    color: var(--color-white);
+    background-color: var(--color-error);
+}
+
+/* logout */
+
+.logout-button {
+    color: var(--color-dark);
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+}
+
+.logout-button:hover {
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+/* authentication */
+
+.auth-main {
+    max-width: 450px;
+    padding-top: var(--space-xl);
+}
+
+.auth-main h1 {
+    text-align: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-form button {
+    margin-top: var(--space-sm);
+}
+
+.auth-form p {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* profile */
+
+.profile-card {
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-card h2 {
+    margin-top: 0;
+}
+
+.profile-info {
+    color: var(--color-grey);
+}
+
+.profile-posts {
+    margin-top: var(--space-lg);
+}
+
+/* single post */
+
+.single-post {
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.single-post h2,
+.single-post h3 {
+    margin-top: 0;
+}
+
+.single-post p {
+    margin: var(--space-sm) 0;
+}
+
+/* edit post */
+
+.edit-post {
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.edit-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+/* tablet */
+
+@media (min-width: 768px) {
+
+}
+
+/* desktop */
+
+@media (min-width: 1025px) {
+
+}
+
+/* large screens */
+
+@media (min-width: 2550px) {
+
+}
