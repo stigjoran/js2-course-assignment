@@ -68,6 +68,8 @@ You will need a registered Noroff user account to log in and use the authenticat
 
 The deployed application will be available here:
 
+Live site: https://stigjoran.github.io/js2-course-assignment/
+
 Live site: To be added after deployment.
 
 ## Repository
