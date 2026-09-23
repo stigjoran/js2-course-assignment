@@ -70,7 +70,7 @@ The deployed application will be available here:
 
 Live site: https://stigjoran.github.io/js2-course-assignment/
 
-Live site: To be added after deployment.
+To register an account, a valid @stud.noroff.no email address is required.
 
 ## Repository
 
