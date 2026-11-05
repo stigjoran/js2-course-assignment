@@ -38,6 +38,15 @@ Used ChatGPT as a learning and debugging tool to help understand JavaScript conc
 - Get guidance on deploying the application with GitHub Pages
 - Test the deployed application and public links
 
+
+## CSS Frameworks CA
+
+## 04.11.2026 Used ChatGPT to:
+
+- Used lesson 1.4 to set up Bootstrap with Sass. Received AI explanations and code/command examples for imports, file paths, npm scripts, and stylesheet links.
+- Debugging: Received help identifying that the scss folder was inside css. Moved it to the project root to match the script and import paths.
+- Testing: Ran npm run dev and confirmed that Sass generated css/main.css. Ran npm run build successfully. Checked DevTools Network and confirmed that main.css loaded with status 304.
+
 ## Important:
 
 AI was used as a learning, debugging and guidance tool throughout the project. Some code examples and suggestions were provided by ChatGPT. I reviewed and integrated the changes into my project and tested the functionality to make sure I understood how it worked.
