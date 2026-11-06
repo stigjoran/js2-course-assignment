@@ -53,6 +53,7 @@ async function fetchPosts() {
 
         posts.forEach((post) => {
             const article = document.createElement("article");
+            article.classList.add("article", "card");
 
             const isOwnPost = post.author.name === username;
 

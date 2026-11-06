@@ -1,0 +1,28 @@
+{
+  "name": "js2-course-assignment",
+  "version": "1.0.0",
+  "description": "Front-end social media application built with vanilla JavaScript and the Noroff Social API.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sass --watch scss/main.scss:css/main.css",
+    "build": "sass --style=compressed scss/main.scss:css/main.css" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stigjoran/js2-course-assignment.git" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/stigjoran/js2-course-assignment/issues"
+  },
+  "homepage": "https://github.com/stigjoran/js2-course-assignment#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.107.1"
+  }
+}
