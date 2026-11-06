@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed | Social Media</title>
-
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/style.css">
     <script type="module" src="./js/posts/feed.js" defer></script>
 </head>
@@ -25,35 +25,39 @@
 
             <form id="createPostForm" class="create-post-form">
                 <div>
-                    <label for="postTitle">Title</label>
+                    <label for="postTitle" class="form-label">Title</label>
                     <input
                         type="text"
                         id="postTitle"
                         name="title"
+                        class="form-control"
                         required
                     >
                 </div>
             
                 <div>
-                    <label for="postBody">Body</label>
+                    <label for="postBody" class="form-label">Body</label>
                     <textarea
                         id="postBody"
                         name="body"
+                        class="form-control"
                         required
                     ></textarea>
                 </div>
-                <button type="submit">Create Post</button>
+                <button type="submit" class="btn btn-primary">Create Post</button>
             </form>
 
             <p id="createPostMessage"></p>
         </section>
 
         <section class="search-section">
+            <label for="searchInput" class="visually-hidden">Search posts</label>
                     <h2>Search posts</h2>
                     <input
                     type="search"
                     id="searchInput"
                     placeholder="Search posts"
+                    class="form-control"
                 >
         </section>
 

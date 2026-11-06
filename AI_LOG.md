@@ -47,6 +47,19 @@ Used ChatGPT as a learning and debugging tool to help understand JavaScript conc
 - Debugging: Received help identifying that the scss folder was inside css. Moved it to the project root to match the script and import paths.
 - Testing: Ran npm run dev and confirmed that Sass generated css/main.css. Ran npm run build successfully. Checked DevTools Network and confirmed that main.css loaded with status 304.
 
+## 05-06.11.2026 Used ChatGPT to:
+
+- Received guidance for applying Bootstrap classes to the login form, feed and single-post page.
+- Received help fixing the stylesheet link on the login page and adding an accessible label to the search field.
+  I tested login form validation with empty fields and an invalid email address.
+- Received a CSS suggestion to wrap long words in posts. I applied it and confirmed that the feed no longer scrolled horizontally.
+- Received help debugging two JavaScript issues. The single-post page was loading feed.js instead of post.js. Later, the feed API
+  returned 200 OK, but a ReferenceError stopped the posts from rendering. ChatGPT explained that classList belongs to the article element and suggested article.classList.add("card").
+- Ran npm run build and confirmed that it completed with exit code 0, with Sass deprecation warnings.
+- I refreshed the feed and confirmed that posts were displayed again.
+
+
+
 ## Important:
 
 AI was used as a learning, debugging and guidance tool throughout the project. Some code examples and suggestions were provided by ChatGPT. I reviewed and integrated the changes into my project and tested the functionality to make sure I understood how it worked.
